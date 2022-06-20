@@ -117,6 +117,38 @@ class Conversion {
 					case "mm2":
 						temp = in2ToCm2(fromValue);
 						return cm2ToMm2(temp);
+					default:
+						return -1;
+				}
+
+			// 3_DIMENSIONAL CONVERSIONS
+			case "gal":
+				switch(toUnit) {
+					case "L":
+						return galToL(fromValue);
+					case "mL":
+						temp = galToL(fromValue);
+						return lToML(temp);
+					case "qt":
+						return galToQuart(fromValue);
+					case "pt":
+						return galToPint(fromValue);
+					case "cup":
+						return galToCup(fromValue);
+					case "oz":
+						return galToOz(fromValue);
+					default:
+						return -1;
+				}
+			case "L":
+				switch(toUnit) {
+					case "gal":
+						return lToGal(fromValue);
+					case "mL":
+						return lToML(fromValue);
+					case "qt":
+						temp = lToGal(fromValue);
+						return galToQt(temp);
 				}
 		}
 		return -1;
@@ -186,4 +218,73 @@ class Conversion {
 		return num / Math.pow(10, 2);
 	}
 
+	// 3-DIMENSIONAL METHODS
+	private double lToML(double num) {
+		return num * 1000;
+	}
+	private double mLToL(double num) {
+		return num / 1000;
+	}
+	private double galToL(double num) {
+		return num * 3.785;
+	}
+	private double lToGal(double num) {
+		return num / 3.785;
+	}
+	private double galToQt(double num) {
+		return num * 4;
+	}
+	private double qtToGal(double num) {
+		return num / 4;
+	}
+	private double galToPt(double num) {
+		return num * 8;
+	}
+	private double ptToGal(double num) {
+		return num / 8;
+	}
+	private double galToCup(double num) {
+		return num * 16;
+	}
+	private double cupToGal(double num) {
+		return num / 16;
+	}
+	private double galToOz(double num) {
+		return num * 128;
+	}
+	private double ozToGal(double num) {
+		return num / 128;
+	}
+
+	// TIME METHODS
+	private double yearToMonth(double num) {
+		return num * 12;
+	}
+	private double monthToYear(double num) {
+		return num / 12;
+	}
+	private double yearToDay(double num) {
+		return num * 365;
+	}
+	private double dayToYear(double num) {
+		return num / 365;
+	}
+	private double dayToHr(double num) {
+		return num * 24;
+	}
+	private double hrToDay(double num) {
+		return num / 24;
+	}
+	private double hrToMin(double num) {
+		return num * 60;
+	}
+	private double minToHr(double num) {
+		return num / 60;
+	}
+	private double minToS(double num) {
+		return num * 60;
+	}
+	private double sToMin(double num) {
+		return num / 60;
+	}
 }
