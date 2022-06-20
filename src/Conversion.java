@@ -41,8 +41,13 @@ class Conversion {
 						return inToCm(fromValue);
 					case "ft":
 						return inToFt(fromValue);
+					case "m":
+						temp = inToCm(fromValue);
+						return cmToM(temp);
+					case "mm":
+						temp = inToCm(fromValue);
+						return cmToMm(temp);
 				}
-				break;
 			case "cm":
 				switch(toUnit) {
 					case "in":
@@ -82,6 +87,8 @@ class Conversion {
 					case "km":
 						return mToKm(fromValue);
 				}
+			case "km":
+
 			case "mi":
 				switch(toUnit) {
 					case "km":
@@ -107,6 +114,9 @@ class Conversion {
 					case "m2":
 						temp = in2ToCm2(fromValue);
 						return cm2ToM2(temp);
+					case "mm2":
+						temp = in2ToCm2(fromValue);
+						return cm2ToMm2(temp);
 				}
 		}
 		return -1;
@@ -137,6 +147,12 @@ class Conversion {
 	private double cmToM(double num) {
 		return num / 100;
 	}
+	private double cmToMm(double num) {
+		return num * 10;
+	}
+	private double mmToCm(double num) {
+		return num / 10;
+	}
 	private double mToKm(double num) {
 		return num / 1000;
 	}
@@ -162,6 +178,12 @@ class Conversion {
 	}
 	private double m2ToCm2(double num) {
 		return num * Math.pow(100, 2);
+	}
+	private double cm2ToMm2(double num) {
+		return num * Math.pow(10, 2);
+	}
+	private double mm2ToCm2(double num) {
+		return num / Math.pow(10, 2);
 	}
 
 }
