@@ -56,6 +56,14 @@ class Conversion {
 						temp = cmToIn(fromValue);
 						return inToFt(temp);
 				}
+			case "mm":
+				switch (toUnit) {
+					case "cm":
+						return mmToCm(fromValue);
+					case "in":
+						temp = mmToCm(fromValue);
+						return cmToIn(temp);
+				}
 			case "ft":
 				switch(toUnit) {
 					case "in":
@@ -88,7 +96,23 @@ class Conversion {
 						return mToKm(fromValue);
 				}
 			case "km":
-
+				switch (toUnit) {
+					case "mi":
+						temp = kmToM(fromValue);
+						temp = mToCm(temp);
+						temp = cmToIn(temp);
+						temp = inToFt(temp);
+						return ftToMi(temp);
+					case "m":
+						return kmToM(fromValue);
+					case "ft":
+						temp = kmToM(fromValue);
+						temp = mToCm(temp);
+						temp = cmToIn(temp);
+						return inToFt(temp);
+					default:
+						return -1;
+				}
 			case "mi":
 				switch(toUnit) {
 					case "km":
@@ -102,6 +126,10 @@ class Conversion {
 						temp = ftToIn(temp);
 						temp = inToCm(temp);
 						return cmToM(temp);
+					case "ft":
+						return miToFt(fromValue);
+					default:
+						return -1;
 				}
 
 			// 2-DIMENSIONAL CONVERSIONS
@@ -130,9 +158,9 @@ class Conversion {
 						temp = galToL(fromValue);
 						return lToML(temp);
 					case "qt":
-						return galToQuart(fromValue);
+						return galToQt(fromValue);
 					case "pt":
-						return galToPint(fromValue);
+						return galToPt(fromValue);
 					case "cup":
 						return galToCup(fromValue);
 					case "oz":
