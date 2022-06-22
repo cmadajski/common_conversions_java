@@ -148,6 +148,33 @@ class Conversion {
 					default:
 						return -1;
 				}
+			case "ha":
+				switch (toUnit) {
+					case "m2":
+						return haToM2(fromValue);
+					case "mi2":
+						temp = haToM2(fromValue);
+						temp = m2ToCm2(temp);
+						temp = cm2ToIn2(temp);
+						temp = in2ToFt2(temp);
+						return ft2ToMi2(temp);
+					case "ft2":
+						temp = haToM2(fromValue);
+						temp = m2ToCm2(temp);
+						temp = cm2ToIn2(temp);
+						return in2ToFt2(temp);
+				}
+			case "mi2":
+				switch (toUnit) {
+					case "ha":
+						temp = mi2ToFt2(fromValue);
+						temp = ft2ToIn2(temp);
+						temp = in2ToCm2(temp);
+						temp = cm2ToM2(temp);
+						return m2ToHa(temp);
+					case "ft2":
+						return mi2ToFt2(fromValue);
+				}
 
 			// 3_DIMENSIONAL CONVERSIONS
 			case "gal":
@@ -233,6 +260,12 @@ class Conversion {
 	private double ft2ToIn2(double num) {
 		return num * Math.pow(12, 2);
 	}
+	private double ft2ToMi2(double num) {
+		return num / Math.pow(5280, 2);
+	}
+	private double mi2ToFt2(double num) {
+		return num * Math.pow(5280, 2);
+	}
 	private double cm2ToM2(double num) {
 		return num / Math.pow(100, 2);
 	}
@@ -244,6 +277,13 @@ class Conversion {
 	}
 	private double mm2ToCm2(double num) {
 		return num / Math.pow(10, 2);
+	}
+	// ha (hectare) is a measure of area equal to 10,000 m2 (100m x 100m)
+	private double m2ToHa(double num) {
+		return num / Math.pow(100, 2);
+	}
+	private double haToM2(double num) {
+		return num * Math.pow(100, 2);
 	}
 
 	// 3-DIMENSIONAL METHODS
