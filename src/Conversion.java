@@ -205,6 +205,24 @@ class Conversion {
 						temp = lToGal(fromValue);
 						return galToQt(temp);
 				}
+			case "C":
+				switch (toUnit) {
+					case "F":
+						return cToF(fromValue);
+					case "K":
+						return -1;
+					default:
+						return -1;
+				}
+			case "F":
+				switch (toUnit) {
+					case "C":
+						return fToC(fromValue);
+					case "K":
+						return -1;
+					default:
+						return -1;
+				}
 		}
 		return -1;
 	}
@@ -354,5 +372,11 @@ class Conversion {
 	}
 	private double sToMin(double num) {
 		return num / 60;
+	}
+	private double fToC(double num) {
+		return (num - 32) / 1.8;
+	}
+	private double cToF(double num) {
+	return num * 1.8 + 32;
 	}
 }
