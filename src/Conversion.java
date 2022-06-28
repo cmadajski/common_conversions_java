@@ -188,7 +188,7 @@ class Conversion {
 						temp = ft2ToIn2(temp);
 						temp = in2ToCm2(temp);
 						temp = cm2ToM2(temp);
-						temp = m2ToHa(temp);
+						return m2ToHa(temp);
 				}
 
 			// 3_DIMENSIONAL CONVERSIONS
