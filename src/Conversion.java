@@ -163,6 +163,12 @@ class Conversion {
 						temp = m2ToCm2(temp);
 						temp = cm2ToIn2(temp);
 						return in2ToFt2(temp);
+					case "ac":
+						temp = haToM2(fromValue);
+						temp = m2ToCm2(temp);
+						temp = cm2ToIn2(temp);
+						temp = in2ToFt2(temp);
+						return ft2ToAc(temp);
 				}
 			case "mi2":
 				switch (toUnit) {
@@ -174,6 +180,15 @@ class Conversion {
 						return m2ToHa(temp);
 					case "ft2":
 						return mi2ToFt2(fromValue);
+				}
+			case "ac":
+				switch (toUnit) {
+					case "ha":
+						temp = acToFt2(fromValue);
+						temp = ft2ToIn2(temp);
+						temp = in2ToCm2(temp);
+						temp = cm2ToM2(temp);
+						temp = m2ToHa(temp);
 				}
 
 			// 3_DIMENSIONAL CONVERSIONS
@@ -302,6 +317,12 @@ class Conversion {
 	}
 	private double haToM2(double num) {
 		return num * Math.pow(100, 2);
+	}
+	private double ft2ToAc(double num) {
+		return num / 43560;
+	}
+	private double acToFt2(double num) {
+		return num * 43560;
 	}
 
 	// 3-DIMENSIONAL METHODS

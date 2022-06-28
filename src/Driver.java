@@ -18,7 +18,7 @@ class Driver {
 			if (newConv.getToValue() == -1) {
 				System.out.printf("ERROR: INVALID_CONVERSION. Can't convert from %s to %s.\n", newConv.getFromUnit(), newConv.getToUnit());
 			} else {
-				System.out.printf("%,.2f %s is %,.2f %s", newConv.getFromValue(), newConv.getFromUnit(),
+				System.out.printf("%,.2f %s is %,.2f %s\n", newConv.getFromValue(), newConv.getFromUnit(),
 						newConv.getToValue(), newConv.getToUnit());
 			}
 		}
