@@ -205,8 +205,8 @@ class Conversion {
 						return galToPt(fromValue);
 					case "cup":
 						return galToCup(fromValue);
-					case "oz":
-						return galToOz(fromValue);
+					case "floz":
+						return galToFloz(fromValue);
 					default:
 						return -1;
 				}
@@ -237,6 +237,38 @@ class Conversion {
 						return -1;
 					default:
 						return -1;
+				}
+			case "oz":
+				switch (toUnit) {
+					case "g":
+						temp = ozToLb(fromValue);
+						return lbToG(temp);
+					case "lb":
+						return ozToLb(fromValue);
+					case "kg":
+						temp = ozToLb(fromValue);
+						temp = lbToG(temp);
+						return gToKg(temp);
+				}
+			case "lb":
+				switch (toUnit) {
+					case "g":
+						return lbToG(fromValue);
+					case "kg":
+						temp = lbToG(fromValue);
+						return gToKg(temp);
+					case "oz":
+						return lbToOz(fromValue);
+				}
+			case "g":
+				switch (toUnit) {
+					case "lb":
+						return gToLb(fromValue);
+					case "kg":
+						return gToKg(fromValue);
+					case "oz":
+						temp = gToLb(fromValue);
+						return lbToOz(temp);
 				}
 		}
 		return -1;
@@ -356,10 +388,10 @@ class Conversion {
 	private double cupToGal(double num) {
 		return num / 16;
 	}
-	private double galToOz(double num) {
+	private double galToFloz(double num) {
 		return num * 128;
 	}
-	private double ozToGal(double num) {
+	private double flozToGal(double num) {
 		return num / 128;
 	}
 
@@ -400,4 +432,25 @@ class Conversion {
 	private double cToF(double num) {
 	return num * 1.8 + 32;
 	}
+
+	// weight methods
+	private double gToLb(double num) {
+		return num / 454;
+	}
+	private double lbToG(double num) {
+		return num * 454;
+	}
+	private double gToKg(double num) {
+		return num / 1000;
+	}
+	private double kgToG(double num) {
+		return num * 1000;
+	}
+	private double ozToLb(double num) {
+		return num / 16;
+	}
+	private double lbToOz(double num) {
+		return num * 16;
+	}
+
 }
