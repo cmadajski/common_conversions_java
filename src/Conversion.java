@@ -225,7 +225,7 @@ class Conversion {
 					case "F":
 						return cToF(fromValue);
 					case "K":
-						return -1;
+						return cToK(fromValue);
 					default:
 						return -1;
 				}
@@ -234,7 +234,18 @@ class Conversion {
 					case "C":
 						return fToC(fromValue);
 					case "K":
+						temp = fToC(fromValue);
+						return cToK(temp);
+					default:
 						return -1;
+				}
+			case "K":
+				switch (toUnit) {
+					case "C":
+						return kToC(fromValue);
+					case "F":
+						temp = kToC(fromValue);
+						return cToF(temp);
 					default:
 						return -1;
 				}
@@ -268,6 +279,18 @@ class Conversion {
 						return gToKg(fromValue);
 					case "oz":
 						temp = gToLb(fromValue);
+						return lbToOz(temp);
+				}
+			case "kg":
+				switch (toUnit) {
+					case "g":
+						return kgToG(fromValue);
+					case "lb":
+						temp = kgToG(fromValue);
+						return gToLb(temp);
+					case "oz":
+						temp = kgToG(fromValue);
+						temp = gToLb(temp);
 						return lbToOz(temp);
 				}
 		}
@@ -426,14 +449,24 @@ class Conversion {
 	private double sToMin(double num) {
 		return num / 60;
 	}
+
+	// TEMPERATURE METHODS
+
 	private double fToC(double num) {
 		return (num - 32) / 1.8;
 	}
 	private double cToF(double num) {
-	return num * 1.8 + 32;
+		return num * 1.8 + 32;
+	}
+	private double cToK(double num) {
+		return num + 273.15;
+	}
+	private double kToC(double num) {
+		return num - 273.15;
 	}
 
-	// weight methods
+	// WEIGHT METHODS
+
 	private double gToLb(double num) {
 		return num / 454;
 	}
@@ -452,5 +485,4 @@ class Conversion {
 	private double lbToOz(double num) {
 		return num * 16;
 	}
-
 }
