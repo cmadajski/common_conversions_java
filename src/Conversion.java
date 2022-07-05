@@ -148,6 +148,39 @@ class Conversion {
 					default:
 						return -1;
 				}
+			case "ft2":
+				switch (toUnit) {
+					case "in2":
+						return ft2ToIn2(fromValue);
+					case "cm2":
+						temp = ft2ToIn2(fromValue);
+						return in2ToCm2(temp);
+					case "m2":
+						temp = ft2ToIn2(fromValue);
+						temp = in2ToCm2(temp);
+						return cm2ToM2(temp);
+					case "mi2":
+						return ft2ToMi2(fromValue);
+					case "ac":
+						return ft2ToAc(fromValue);
+				}
+			case "m2":
+				switch (toUnit) {
+					case "cm2":
+						return m2ToCm2(fromValue);
+					case "ft2":
+						temp = m2ToCm2(fromValue);
+						temp = cm2ToIn2(temp);
+						return in2ToFt2(temp);
+					case "in2":
+						temp = m2ToCm2(fromValue);
+						return cm2ToIn2(temp);
+					case "ac":
+						temp = m2ToCm2(fromValue);
+						temp = cm2ToIn2(temp);
+						temp = in2ToFt2(temp);
+						return ft2ToAc(temp);
+				}
 			case "ha":
 				switch (toUnit) {
 					case "m2":
@@ -359,6 +392,12 @@ class Conversion {
 	}
 	private double m2ToCm2(double num) {
 		return num * Math.pow(100, 2);
+	}
+	private double m2ToKm2(double num) {
+		return num / Math.pow(1000, 2);
+	}
+	private double km2ToM2(double num) {
+		return num * Math.pow(1000, 2);
 	}
 	private double cm2ToMm2(double num) {
 		return num * Math.pow(10, 2);
